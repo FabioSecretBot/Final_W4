@@ -21,6 +21,7 @@
 
 #include <stdio.h>
 #include "stats.h"
+#include "platform.h"
 
 #define SIZE (40)
 
@@ -41,12 +42,14 @@ void print_statistics(unsigned char array[], int length) {
 
   int i;
 
+  #ifdef VERBOSE
   //Printing stadistics
-  printf("Median: %d\nMean: %d\nMaximum: %d\nMinimum: %d\n",
+  PRINTF("Median: %d\nMean: %d\nMaximum: %d\nMinimum: %d\n",
           find_median(array, length),
           find_mean(array, length),
           find_maximum(array, length),
           find_minimum(array, length));
+  #endif
 }
 
 void print_array_in_order(unsigned char array[], int length) {
@@ -55,10 +58,12 @@ void print_array_in_order(unsigned char array[], int length) {
   unsigned char array_in_order[length];
   sort_array(array, array_in_order, length);
 
+  #ifdef VERBOSE
   //Printing every character
   for (i = 0; i< length; i++) {
-    printf("%d : %d\n", i, array_in_order[i]);
+    PRINTF("%d : %d\n", i, array_in_order[i]);
   }
+  #endif
 }
 
 int find_median(unsigned char array[], int length) {

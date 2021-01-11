@@ -66,7 +66,10 @@ CFLAGS = -Wall					\
 		 -g						\
 		 -O0					\
 		 -std=c99				\
-		 -D$(PLATFORM)
+		 -D$(PLATFORM)			\
+		 -DCOURSE1				\
+		 -DVERBOSE
+
 CPPFLAGS := -E
 ODFLAGS := -S --disassemble
 
