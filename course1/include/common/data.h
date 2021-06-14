@@ -7,6 +7,8 @@
 #define BASE_10         10
 #define BASE_8          8
 #define BASE_2          2
+#define INT_MAX         32767
+#define INT_MIN         -32768
 
 /**
  * @brief Integer-to-ASCII

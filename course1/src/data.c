@@ -51,5 +51,35 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base){
 
 int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
 
+    int sign = 1, base = 0, i = 0;
+     
+    // if whitespaces then ignore.
+    while (ptr[i] == ' ')
+    {
+        i++;
+    }
+     
+    // sign of number
+    if (ptr[i] == '-' || ptr[i] == '+')
+    {
+        sign = 1 - 2 * (ptr[i++] == '-');
+    }
+   
+    // checking for valid input
+    while (ptr[i] >= '0' && ptr[i] <= '9')
+    {
+        // handling overflow test case
+        if (base > INT_MAX / 10
+            || (base == INT_MAX / 10
+            && ptr[i] - '0' > 7))
+        {
+            if (sign == 1)
+                return INT_MAX;
+            else
+                return INT_MIN;
+        }
+        base = 10 * base + (ptr[i++] - '0');
+    }
+    return base * sign;
 }
 

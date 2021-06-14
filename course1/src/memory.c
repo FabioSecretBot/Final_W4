@@ -50,30 +50,75 @@ void clear_all(char * ptr, unsigned int size){
 
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
 
+  if (sizeof(src) == length && sizeof(dst) == length)
+    for (int i = 0; i < length; i++) dst[i] = src[i];
+  else dst = NULL;
+
   return dst;
 }
 
 uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length){
 
+  size_t len;
+
+  if ( length > sizeof(src) ) len = sizeof(src);
+  else len = length;
+
+  if ( len > sizeof(dst) ) len = sizeof(dst); 
+
+  for (int i = 0; i < len; i++) dst[i] = src[i];
+  
+  return dst;
 }
 
 uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value){
+  
+  size_t len;
 
+  if ( length > sizeof(src) ) len = sizeof(src);
+  else len = length;
+  for (int i = 0; i < len; i++) src[i] = value;
+
+  return src;
 }
 
 uint8_t * my_memzero(uint8_t * src, size_t length){
 
+  size_t len;
+
+  if ( length > sizeof(src) ) len = sizeof(src);
+  else len = length;
+  for (int i = 0; i < len; i++) src[i] = 0x00;
+
+  return src;
 }
 
 uint8_t * my_reverse(uint8_t * src, size_t length){
 
+  size_t len;
+
+  if ( length > sizeof(src) ) len = sizeof(src);
+  else len = length;
+
+  uint8_t* tmp[len];
+
+  for (int i = 0; i < len; i++) {
+    tmp[len-1-i] = src[i];
+  }
+
+  return src;
 }
 
 int32_t * reserve_words(size_t length){
 
+  int32_t din;
+
+  din = (int32_t *) malloc( length * sizeof(int32_t) );
+
+  return din;
 }
 
 void free_words(int32_t * src){
-
+  free(src);
 }
 
