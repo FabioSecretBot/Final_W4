@@ -41,6 +41,15 @@ void print_statistics(unsigned char array[], int length);
 void print_array_in_order(unsigned char array[], int length);
 
 /**
+ * @brief Given an array of data and a length, prints the array to the screen
+ *
+ * @param array The array to be printed
+ * @param length The length of the array
+ *
+ */
+void print_array(uint8_t* array, int length);
+
+/**
  * @brief Given an array of data and a length, returns the median value
  *
  * @param array The array for the median

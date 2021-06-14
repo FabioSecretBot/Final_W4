@@ -21,6 +21,9 @@
  *
  */
 #include "memory.h"
+#include <stdint.h>
+#include "platform.h"
+#include "data.h"
 
 /***********************************************************
  Function Definitions
@@ -51,7 +54,7 @@ void clear_all(char * ptr, unsigned int size){
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
 
   if (sizeof(src) == length && sizeof(dst) == length)
-    for (int i = 0; i < length; i++) dst[i] = src[i];
+    for (int i = 0; i < (int)length; i++) dst[i] = src[i];
   else dst = NULL;
 
   return dst;
@@ -66,7 +69,7 @@ uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length){
 
   if ( len > sizeof(dst) ) len = sizeof(dst); 
 
-  for (int i = 0; i < len; i++) dst[i] = src[i];
+  for (int i = 0; i < (int)len; i++) dst[i] = src[i];
   
   return dst;
 }
@@ -77,7 +80,7 @@ uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value){
 
   if ( length > sizeof(src) ) len = sizeof(src);
   else len = length;
-  for (int i = 0; i < len; i++) src[i] = value;
+  for (int i = 0; i < (int)len; i++) src[i] = value;
 
   return src;
 }
@@ -88,25 +91,43 @@ uint8_t * my_memzero(uint8_t * src, size_t length){
 
   if ( length > sizeof(src) ) len = sizeof(src);
   else len = length;
-  for (int i = 0; i < len; i++) src[i] = 0x00;
+  for (int i = 0; i < (int)len; i++) src[i] = 0x00;
 
   return src;
 }
 
 uint8_t * my_reverse(uint8_t * src, size_t length){
 
-  size_t len;
+  // size_t len;
+  int len = SIZEOF(src);
 
-  if ( length > sizeof(src) ) len = sizeof(src);
-  else len = length;
+  // if ( length > SIZEOF(src) ) 
+  // l = ;
+  // else 
+  //   len = length;
+
+  // l = len;
 
   uint8_t* tmp[len];
+
+  // for (int a = 0; a < SIZEOF(src); a++) {
+  //   tmp[a] = ' ';
+  // }
 
   for (int i = 0; i < len; i++) {
     tmp[len-1-i] = src[i];
   }
 
-  return src;
+  for (int a = 0; a < len; a++) {
+    src[a] = tmp[a];
+  }
+
+  // src = tmp;
+  // for (int b = 0; b< SIZEOF(tmp); b++) {
+  //   PRINTF("%d : %d\n", b, tmp[b]);
+  // }
+
+  return &tmp;
 }
 
 int32_t * reserve_words(size_t length){

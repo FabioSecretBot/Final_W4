@@ -2,6 +2,8 @@
 #define __DATA_H__
 
 #include <stdint.h>
+#include <stdio.h>
+#include <stdbool.h>
 
 #define BASE_16         16
 #define BASE_10         10
@@ -9,6 +11,7 @@
 #define BASE_2          2
 #define INT_MAX         32767
 #define INT_MIN         -32768
+#define SIZEOF(x)       (sizeof(x) / sizeof((x)[0]))
 
 /**
  * @brief Integer-to-ASCII
@@ -35,5 +38,7 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base);
  * @return Interger converted.
  */
 int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base);
+
+int32_t pow_custom(uint32_t base, int pot);
 
 #endif /* __DATA_H__ */

@@ -19,12 +19,13 @@
  *
  */
 
+#include <stdint.h> 
 #include <stdio.h>
 #include "stats.h"
 #include "platform.h"
 
 #define SIZE (40)
-
+/*
 void main() {
 
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
@@ -37,10 +38,8 @@ void main() {
   print_statistics(test, SIZE);
 
 }
-
+*/
 void print_statistics(unsigned char array[], int length) {
-
-  int i;
 
   #ifdef VERBOSE
   //Printing stadistics
@@ -62,6 +61,17 @@ void print_array_in_order(unsigned char array[], int length) {
   //Printing every character
   for (i = 0; i< length; i++) {
     PRINTF("%d : %d\n", i, array_in_order[i]);
+  }
+  #endif
+}
+
+void print_array(uint8_t* array, int length) {
+
+  int i;
+  #ifdef VERBOSE
+  //Printing every character
+  for (i = 0; i< length; i++) {
+    PRINTF("%d : %d\n", i, array[i]);
   }
   #endif
 }
@@ -130,7 +140,8 @@ int find_minimum(unsigned char array[], int length) {
 
 void sort_array(unsigned char array[],unsigned char array_to_order[], int length) {
 
-  int i, a, b, header;
+  int i, a, b;
+  unsigned char header;
 
   //Copy the initial array to the sort array
   for (b = 0; b < length; b++) {
