@@ -22,6 +22,8 @@
  */
 #include "memory.h"
 #include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "platform.h"
 #include "data.h"
 
@@ -115,12 +117,12 @@ uint8_t * my_reverse(uint8_t * src, size_t length){
     src[a] = tmp[a];
   }
 
-  return tmp;
+  return src;
 }
 
-int32_t * reserve_words(size_t length){
+int32_t* reserve_words(size_t length){
 
-  int32_t din;
+  int32_t* din;
 
   din = (int32_t *) malloc( length * sizeof(int32_t) );
 
