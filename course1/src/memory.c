@@ -53,81 +53,69 @@ void clear_all(char * ptr, unsigned int size){
 
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
 
-  if (sizeof(src) == length && sizeof(dst) == length)
-    for (int i = 0; i < (int)length; i++) dst[i] = src[i];
-  else dst = NULL;
+  uint8_t i = 0;
+  uint8_t len = length/sizeof(uint8_t);
+  uint8_t* tmp[len];
+
+    for (i = 0; i < len; i++) {
+      tmp[i] = src[i];
+    }
+
+    for (i = 0; i < len; i++) {
+      dst[i] = tmp[i];
+    }
 
   return dst;
 }
 
 uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length){
 
-  size_t len;
+  uint8_t i;
+  uint8_t len = length/sizeof(uint8_t); 
 
-  if ( length > sizeof(src) ) len = sizeof(src);
-  else len = length;
-
-  if ( len > sizeof(dst) ) len = sizeof(dst); 
-
-  for (int i = 0; i < (int)len; i++) dst[i] = src[i];
+  for (i = 0; i < len; i++) {
+    dst[i] = src[i];
+  }
   
   return dst;
 }
 
 uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value){
   
-  size_t len;
+  uint8_t i;
+  uint8_t len = length/sizeof(uint8_t);
 
-  if ( length > sizeof(src) ) len = sizeof(src);
-  else len = length;
-  for (int i = 0; i < (int)len; i++) src[i] = value;
+  for (i = 0; i < len; i++) src[i] = value;
 
   return src;
 }
 
 uint8_t * my_memzero(uint8_t * src, size_t length){
 
-  size_t len;
+  uint8_t i;
+  uint8_t len = length/sizeof(uint8_t);
 
-  if ( length > sizeof(src) ) len = sizeof(src);
-  else len = length;
-  for (int i = 0; i < (int)len; i++) src[i] = 0x00;
+  for (i = 0; i < len; i++) src[i] = 0x00;
 
   return src;
 }
 
 uint8_t * my_reverse(uint8_t * src, size_t length){
 
-  // size_t len;
-  int len = SIZEOF(src);
-
-  // if ( length > SIZEOF(src) ) 
-  // l = ;
-  // else 
-  //   len = length;
-
-  // l = len;
+  int a, i;
+  uint8_t len = length/sizeof(uint8_t);
 
   uint8_t* tmp[len];
 
-  // for (int a = 0; a < SIZEOF(src); a++) {
-  //   tmp[a] = ' ';
-  // }
-
-  for (int i = 0; i < len; i++) {
+  for (i = 0; i < len; i++) {
     tmp[len-1-i] = src[i];
   }
 
-  for (int a = 0; a < len; a++) {
+  for (a = 0; a < len; a++) {
     src[a] = tmp[a];
   }
 
-  // src = tmp;
-  // for (int b = 0; b< SIZEOF(tmp); b++) {
-  //   PRINTF("%d : %d\n", b, tmp[b]);
-  // }
-
-  return &tmp;
+  return tmp;
 }
 
 int32_t * reserve_words(size_t length){
